@@ -9,8 +9,9 @@ let results = [0, 0, 1];
 
 function findWinner(competitions, results) {
     let scores = {};
-    let currentBestTeam = '';
-    let maxScore = 0;
+    let topTeam = { 
+         team: "",
+         score: 0 };
 
     for (let i = 0; i < competitions.length; i++) {
         const [homeTeam, awayTeam] = competitions[i];
@@ -28,13 +29,12 @@ function findWinner(competitions, results) {
 
         scores[winningTeam] += 3;
 
-        if (scores[winningTeam] > maxScore) {
-            maxScore = scores[winningTeam];
-            currentBestTeam = winningTeam;
-            console.log(maxScore, "points scored by", currentBestTeam);
+        if (scores[winningTeam] > topTeam.score) {
+            topTeam.score = scores[winningTeam];
+            topTeam.team = winningTeam;
         }
     }
-    return currentBestTeam;
+    return topTeam.team;
 }
 
 
